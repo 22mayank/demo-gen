@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Box from '@mui/material/Box';
+import { SidebarProvider } from './context/SidebarContext';
+import { ChatProvider } from './context/ChatContext';
+import Sidebar from './components/Sidebar';
+import ChatArea from './components/ChatArea';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SidebarProvider>
+      <ChatProvider>
+        <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
+          <Sidebar useCaseId="document-qa" />
+          <ChatArea />
+        </Box>
+      </ChatProvider>
+    </SidebarProvider>
   );
-}
+};
 
 export default App;
